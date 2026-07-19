@@ -86,10 +86,18 @@
   var form = document.getElementById('contact-form');
   var status = document.getElementById('form-status');
 
+  function setStatus(text, color) {
+    if (!status) {
+      console.warn('form-status element not found in the page; message was: ' + text);
+      return;
+    }
+    status.textContent = text;
+    status.style.color = color || "";
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    status.textContent = "Sending...";
-    status.style.color = "";
+    setStatus("Sending...", "");
 
     var data = new FormData(form);
 
@@ -103,21 +111,18 @@
       });
     }).then(function (result) {
       if (result.ok) {
-        status.textContent = "Thanks! Your message has been sent — we'll get back to you soon.";
-        status.style.color = "#8C9E7C";
+        setStatus("Thanks! Your message has been sent — we'll get back to you soon.", "#8C9E7C");
         form.reset();
       } else {
         var errMsg = "Sorry, something went wrong. Please try again, or email us directly.";
         if (result.body && result.body.errors && result.body.errors.length) {
           errMsg = result.body.errors.map(function (er) { return er.message; }).join(' ');
         }
-        status.textContent = errMsg;
-        status.style.color = "#7E5CA8";
+        setStatus(errMsg, "#7E5CA8");
         console.error('Formspree error:', result.body);
       }
     }).catch(function (err) {
-      status.textContent = "Sorry, something went wrong. Please check your connection and try again.";
-      status.style.color = "#7E5CA8";
+      setStatus("Sorry, something went wrong. Please check your connection and try again.", "#7E5CA8");
       console.error('Network/JS error submitting form:', err);
     });
   });
