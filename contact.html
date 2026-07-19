@@ -86,15 +86,13 @@
   var form = document.getElementById('contact-form');
 
   function setStatus(text, color) {
-    var status = document.getElementById('form-status');
-    if (!status) {
+    var statusEl = document.getElementById('form-status');
+    if (!statusEl) {
       console.warn('form-status element not found in the page; message was: ' + text);
       return;
     }
-    status.textContent = text;
-    if (status.style) {
-      status.style.color = color || "";
-    }
+    statusEl.textContent = text;
+    statusEl.style.color = color || "";
   }
 
   form.addEventListener('submit', function (e) {
