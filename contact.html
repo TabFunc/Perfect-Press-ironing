@@ -84,15 +84,17 @@
 <script src="nav.js"></script>
 <script>
   var form = document.getElementById('contact-form');
-  var status = document.getElementById('form-status');
 
   function setStatus(text, color) {
+    var status = document.getElementById('form-status');
     if (!status) {
       console.warn('form-status element not found in the page; message was: ' + text);
       return;
     }
     status.textContent = text;
-    status.style.color = color || "";
+    if (status.style) {
+      status.style.color = color || "";
+    }
   }
 
   form.addEventListener('submit', function (e) {
