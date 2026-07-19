@@ -60,7 +60,7 @@
     </div>
 
     <div>
-      <form id="contact-form">
+      <form id="contact-form" action="https://formspree.io/f/mrenqnzk" method="POST">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required>
 
@@ -87,10 +87,31 @@
 
 <script src="nav.js"></script>
 <script>
-  document.getElementById('contact-form').addEventListener('submit', function (e) {
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('form-status');
+
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var status = document.getElementById('form-status');
-    status.textContent = "Thanks — this form isn't wired up to send yet. For now, please email or call using the details on the left.";
+    status.textContent = "Sending...";
+    status.style.color = "";
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (response) {
+      if (response.ok) {
+        status.textContent = "Thanks! Your message has been sent — we'll get back to you soon.";
+        status.style.color = "#8C9E7C";
+        form.reset();
+      } else {
+        status.textContent = "Sorry, something went wrong. Please try again, or email us directly.";
+        status.style.color = "#7E5CA8";
+      }
+    }).catch(function () {
+      status.textContent = "Sorry, something went wrong. Please check your connection and try again.";
+      status.style.color = "#7E5CA8";
+    });
   });
 </script>
 </body>
