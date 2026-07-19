@@ -1,15 +1,15 @@
 :root {
-  --bg: #FFF8EC;
-  --bg-card: #FDEBD8;
-  --bg-card-alt: #F3E4D0;
-  --ink: #3A2E28;
-  --ink-soft: #7A6A5D;
-  --accent: #A8425C;
-  --accent-dark: #8A3249;
-  --accent-soft: #F4DCE1;
-  --sage: #7C9473;
-  --sage-soft: #E5EBE0;
-  --line: #EADFC9;
+  --bg: #F8F5FC;
+  --bg-card: #EDE4F7;
+  --bg-card-alt: #E4D8F2;
+  --ink: #3A2E42;
+  --ink-soft: #7A6E88;
+  --accent: #7E5CA8;
+  --accent-dark: #644789;
+  --accent-soft: #E9DFF5;
+  --sage: #8C9E7C;
+  --sage-soft: #E7EDE1;
+  --line: #DCCFEC;
   --max: 1040px;
 }
 
@@ -421,7 +421,7 @@ footer {
   font-size: 0.92rem;
 }
 
-footer a { color: #F4C9D3; }
+footer a { color: #D8C3EE; }
 
 .footer-row {
   display: flex;
